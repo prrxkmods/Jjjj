@@ -1,0 +1,30 @@
+name: Build Forge 1.8.9 Mod
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Java 8
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'adopt'
+        java-version: '8'
+
+    - name: Build mod
+      run: |
+        chmod +x gradlew
+        ./gradlew build --no-daemon
+
+    - name: Upload built mod
+      uses: actions/upload-artifact@v3
+      with:
+        name: modforge-built
+        path: build/libs/*.jar
+        
