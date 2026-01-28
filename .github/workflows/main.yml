@@ -23,8 +23,8 @@ jobs:
         ./gradlew build --no-daemon
 
     - name: Upload built mod
-      uses: actions/upload-artifact@v3
-      with:
-        name: modforge-built
-        path: build/libs/*.jar
-        
+  uses: actions/upload-artifact@v4
+  with:
+    name: modforge-built
+    path: build/libs/*.jar
+    
